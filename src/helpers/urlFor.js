@@ -1,5 +1,5 @@
 const urlFor = (endpoint) => {
-  return 'http://note-app-pj-toews.herokuapp.com/' + endpoint;
+  return 'https://note-api-peijean.herokuapp.com/' + endpoint;
 };
 
 export default urlFor;
