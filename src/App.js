@@ -73,6 +73,12 @@ submitTag = (data, noteId) => {
   .catch((err) => console.log(err.response.data) );
 }
 
+deleteTag = (noteId, id) => {
+  axios.delete(urlFor('/tags/${id}'))
+  .then((res) => this.getNote(noteId) )
+  .catch((err) => console.log(err.response.data) );
+}
+
 
   render() {
     const { showNote, notes, note, newTag } = this.state;
@@ -85,9 +91,10 @@ submitTag = (data, noteId) => {
             note={note}
             submitNote={this.submitNote}
             newTag={newTag}
-            ShowTagForm={this.showTagForm}
+            showTagForm={this.showTagForm}
             closeTagForm={this.closeTagForm}
-            submitTag={this.submitTag}            
+            submitTag={this.submitTag}
+            deleteTag={this.deleteTag}         
           />
            : 
           <List
