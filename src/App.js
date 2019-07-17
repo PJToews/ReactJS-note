@@ -14,7 +14,8 @@ class App extends Component {
     this.state = {
       showNote: false,
       notes: [],
-      note: {}
+      note: {},
+      newTag: false
     };
   }
 
@@ -55,12 +56,16 @@ deleteNote = (id) => {
   const newNotesState = this.state.notes.filter((note) => note.id !== id );
   axios.delete(urlFor('notes/${id}'))
   .then((res) => this.setState({ notes: newNotesState }))
-  .catch((err) => console.log(er.response.date) );
+  .catch((err) => console.log(err.response.date) );
+}
+
+showTagForm = () => {
+  this.setState({ newTag: true });
 }
 
 
   render() {
-    const { showNote, notes, note } = this.state;
+    const { showNote, notes, note, newTag } = this.state;
 
     return (
       <div className="App">
@@ -69,6 +74,8 @@ deleteNote = (id) => {
           <Note
             note={note}
             submitNote={this.submitNote}
+            ShowTagForm={this.showTagForm}
+            newTag={newTag}
           />
            : 
           <List
