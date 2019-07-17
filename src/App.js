@@ -63,6 +63,10 @@ showTagForm = () => {
   this.setState({ newTag: true });
 }
 
+closeTagForm = () => {
+  this.setState({ newTag: false });
+}
+
 
   render() {
     const { showNote, notes, note, newTag } = this.state;
@@ -74,8 +78,9 @@ showTagForm = () => {
           <Note
             note={note}
             submitNote={this.submitNote}
-            ShowTagForm={this.showTagForm}
             newTag={newTag}
+            ShowTagForm={this.showTagForm}
+            closeTagForm={this.closeTagForm}            
           />
            : 
           <List
