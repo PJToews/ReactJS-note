@@ -2,6 +2,14 @@ import React from 'react';
 
 class Note extends React.Component {
 
+  renderTags(note) {
+    return note.tags.map((tag, index) =>
+      <span className="note-card-tag" key={index}>
+        {tag.name}
+      </span>
+    );
+  }
+
   onSubmit(e) {
     e.preventDefault();
     const formData = {    
@@ -13,44 +21,68 @@ class Note extends React.Component {
 
   onTagSubmit(e) {
     e.preventDefault();
-    console.log(this.name.value);
+    const formData = {
+      name: this.name.value
+    };
+    this.props.submitTag(formData, this.props.note.id);
     this.props.closeTagForm();
   }
 
-  renderTagForm() {
-  if (!this.props.newTag) {
-    return (
-      <span>
-        Tag your note:
-        <i
-          className="tag-button material-icons"
-          onClick={() => this.props.showTagForm()}
-        >
-            add circle
-        </i>
-      </span>
-      );
-    } else {
+  renderTagForm(note) {
+  if (note.id !== undefined) {
+    if (!this.props.newTag) {
       return (
-        <form onSubmit={(e) => this.onTagSubmit(e)}>
-          <input
-            className="tag-input"
-            type="text"
-            placeholder="Tag Name..."
-            ref={(input) => this.name = input}
-            />
-        </form>
+        <span>
+          Tag your note:
+          <i
+            className="tag-button material-icons"
+            onClick={() => this.props.showTagForm()}
+          >
+              add circle
+          </i>
+        </span>
+        );
+      } else {
+        return (
+          <form onSubmit={(e) => this.onTagSubmit(e)}>
+            <input
+              className="tag-input"
+              type="text"
+              placeholder="Tag Name..."
+              ref={(input) => this.name = input}
+              />
+          </form>
+        );
+      }
+    }
+  }
+
+  render Tags(note) {
+    if (note.tags) {
+      return note.tags.map((tag, index) =>
+      <div className="tag" key={index}>
+       <span className="delete">
+        <i className="material-icons">delete</i>
+        </span>
+        {tag.name}
+      </div>
+      <div className="tag-list-container">
+        {this.renderTags(note)}
+      </div>
       );
     }
   }
 
   render() {
-    const { note } = this.props;
+    const { note, closeTagForm } = this.props;
 
 
     return (
       <div className="note-container">
-        <form className="note-form" onSubmit={(e) => this.onSubmit(e)}>
+        <form className="note-form"
+        onSubmit={(e) => this.onSubmit(e)}
+        onClick={() => closeTagForm()}
+        >
         <input
           className="note-title-input"
           type="text"
@@ -68,7 +100,7 @@ class Note extends React.Component {
         </form>
         <div className="tag-container">
           <div className="tag-button-container">
-        {this.renderTagForm()}
+        {this.renderTagForm(note)}
         </div>
         </div>
       </div>
