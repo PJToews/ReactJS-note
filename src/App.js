@@ -63,8 +63,9 @@ submitNote = (data, id) => {
 }
 
 deleteNote = (id) => {
+  debugger
   const newNotesState = this.state.notes.filter((note) => note.id !== id );
-  axios.delete(urlFor('notes/${id}'))
+  axios.delete(urlFor(`notes/${id}`))
   .then((res) => this.setState({ notes: newNotesState }))
   .catch((err) => console.log(err.response.date) );
 }
@@ -78,7 +79,7 @@ closeTagForm = () => {
 }
 
 submitTag = (data, noteId) => {
-  axios.post(urlFor('notes/${noteId}/tags'), data)
+  axios.post(urlFor(`notes/${noteId}/tags`), data)
   .then((res) => this.getNote(noteId) )
   .catch((err) => {
     const { errors } = err.response.data;
@@ -89,7 +90,7 @@ submitTag = (data, noteId) => {
 }
 
 deleteTag = (noteId, id) => {
-  axios.delete(urlFor('/tags/${id}'))
+  axios.delete(urlFor(`/tags/${id}`))
   .then((res) => this.getNote(noteId) )
   .catch((err) => console.log(err.response.data) );
 }

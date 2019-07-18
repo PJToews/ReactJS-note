@@ -2,7 +2,7 @@ import React from 'react';
 
 class Flash extends React.Component {
 
-  ComponentDidMount() {
+  componentDidMount() {
     setTimeout(() => {
       this.props.resetError();
     }, 2000);
