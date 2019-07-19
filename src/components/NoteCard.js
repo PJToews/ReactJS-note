@@ -14,7 +14,7 @@ class NoteCard extends React.Component {
     const { note, getNote, deleteNote } = this.props;
 
     return (
-      <div className="note-card-container">
+      <div className="note-card-container" onClick={() => getNote(note.id)}>
         <div className="note-card-title">
           {note.title}
         </div>

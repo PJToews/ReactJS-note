@@ -22,9 +22,10 @@ class App extends Component {
   }
 
   toggleNote = () => {
+    console.log(7)
     this.setState({
       showNote: ! this.state.showNote,
-      note: {}
+      
     });
   }
 
@@ -35,7 +36,7 @@ class App extends Component {
   }
 
   getNote = (id) => {
-    axios.get(urlFor('notes/${id}'))
+    axios.get(urlFor(`notes/${id}`))
     .then((res) => this.setState({ note: res.data, showNote: true }) )
     .catch((err) => console.log(err.response.data) );    
   }
@@ -119,6 +120,7 @@ resetError = () => {
           />
            : 
           <List
+          toggleNote={this.toggleNote}
            getNotes={this.getNotes}
            notes={notes}
            getNote={this.getNote}

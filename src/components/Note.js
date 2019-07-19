@@ -4,7 +4,6 @@ class Note extends React.Component {
 
 
   onSubmit(e) {
-    console log(7)
     e.preventDefault();
     const formData = {    
       title: this.title.value,

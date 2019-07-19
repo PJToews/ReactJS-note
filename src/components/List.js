@@ -12,6 +12,7 @@ class List extends React.Component {
   const cards = notes.map((note, index) => {
     return (
       <NoteCard
+        toggleNote={this.props.toggleNote}
         key={index}
         index={index}
         note={note}
