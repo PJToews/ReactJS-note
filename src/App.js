@@ -63,7 +63,6 @@ submitNote = (data, id) => {
 }
 
 deleteNote = (id) => {
-  debugger
   const newNotesState = this.state.notes.filter((note) => note.id !== id );
   axios.delete(urlFor(`notes/${id}`))
   .then((res) => this.setState({ notes: newNotesState }))
@@ -107,6 +106,7 @@ resetError = () => {
       <div className="App">
         <Nav toggleNote={this.toggleNote} showNote={showNote} />
         {error && <Flash error={error} resetError={this.resetError} />}
+
         {showNote ? 
           <Note
             note={note}

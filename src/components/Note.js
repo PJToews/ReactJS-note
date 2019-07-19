@@ -4,6 +4,7 @@ class Note extends React.Component {
 
 
   onSubmit(e) {
+    console log(7)
     e.preventDefault();
     const formData = {    
       title: this.title.value,
@@ -22,7 +23,7 @@ class Note extends React.Component {
   }
 
   renderTagForm(note) {
-    if (note.id !== undefined) {
+    if (this.props.note.id !== undefined) {
       if (!this.props.newTag) {
         return (
           <span>
@@ -94,13 +95,10 @@ class Note extends React.Component {
           <input className="note-button" type="submit" value="Submit" />
         </form>
         <div className="tag-container">
-          <div className="tag-button-container">
-            {this.renderTagForm()}
-          </div>
-          <div className="tag-list-container">
-            {this.renderTags(note)}
-          </div>
+        <div className="tag-button-container">
+          {this.renderTagForm()}
         </div>
+      </div>
       </div>
     );
   }
