@@ -97,6 +97,7 @@ class Note extends React.Component {
         <div className="tag-button-container">
           {this.renderTagForm()}
         </div>
+        {this.renderTags(note)}
       </div>
       </div>
     );
